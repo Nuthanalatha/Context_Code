@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
-
+import logo from "./logo.svg";
+import "./App.css";
+import ComponentA from "./components/ComponentA";
+import { DataProvider } from "./components/ContextApi";
+import { DataConsumer } from "./components/ContextApi";
+import ComponentB from "./components/ComponentB";
+import { useState } from "react";
+import { UserProvider } from "./components/contextapi/ContextUser";
 function App() {
+  let fName = "Ghana";
+  let [userName, setUserName] = useState("Megha");
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>{userName}</h1>
+      <DataProvider value={fName}>
+        <ComponentA />
+      </DataProvider>
+
+      <UserProvider value={setUserName}>
+        <ComponentB />
+      </UserProvider>
     </div>
   );
 }
